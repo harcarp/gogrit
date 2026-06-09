@@ -1,89 +1,157 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="sk">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Go Grit s.r.o.</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f7f7f7;
-      color: #111;
-      line-height: 1.6;
-    }
-    header {
-      background: #111827;
-      color: white;
-      padding: 60px 20px;
-      text-align: center;
-    }
-    main {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 40px 20px;
-    }
-    section {
-      background: white;
-      padding: 28px;
-      margin-bottom: 24px;
-      border-radius: 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-    }
-    h1, h2 {
-      margin-top: 0;
-    }
-    a {
-      color: #0f766e;
-      font-weight: bold;
-    }
-    footer {
-      text-align: center;
-      padding: 30px 20px;
-      color: #666;
-      font-size: 14px;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Grit, s. r. o.</title>
+<meta name="description" content="Go Grit, s. r. o. — technologická firma. Tvorca projektu Singlo.gifts. Kontakt: info@gogrit.sk">
+<style>
+:root{
+--bg:#0c0d10; --bg2:#13151a; --card:#171a21; --line:#262a33;
+--txt:#e9ebf0; --muted:#9aa1ad; --accent:#ff5a1f; --accent2:#ffb020; --ok:#2dd4a0;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+background:var(--bg);color:var(--txt);line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:920px;margin:0 auto;padding:0 22px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{line-height:1.15;letter-spacing:-.02em}
+.accent{color:var(--accent)}
+
+nav{position:sticky;top:0;z-index:50;background:rgba(12,13,16,.82);
+backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.navin{display:flex;align-items:center;justify-content:space-between;height:64px}
+.logo{font-weight:800;font-size:20px;letter-spacing:-.03em;display:flex;align-items:center;gap:9px}
+.logo .dot{width:11px;height:11px;border-radius:50%;
+background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 14px var(--accent)}
+.btn{display:inline-block;padding:12px 22px;border-radius:10px;font-weight:600;font-size:15px;
+background:linear-gradient(135deg,var(--accent),var(--accent2));color:#160a02;border:none;cursor:pointer;
+transition:transform .15s ease, box-shadow .15s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(255,90,31,.35)}
+.btn.ghost{background:transparent;color:var(--txt);border:1px solid var(--line)}
+.btn.ghost:hover{border-color:var(--accent);box-shadow:none}
+
+header{padding:96px 0 64px;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;top:-200px;right:-160px;width:520px;height:520px;
+background:radial-gradient(circle,rgba(255,90,31,.16),transparent 60%);filter:blur(20px)}
+header h1{font-size:clamp(40px,8vw,68px);font-weight:800}
+header p.lead{color:var(--muted);font-size:clamp(16px,2.4vw,20px);max-width:52ch;margin:20px 0 0}
+
+section{padding:56px 0;border-top:1px solid var(--line)}
+.eyebrow{color:var(--accent);font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
+.stitle{font-size:clamp(24px,4vw,34px);font-weight:800;margin:10px 0 14px}
+.sub{color:var(--muted);max-width:60ch;margin-bottom:32px}
+
+.info{display:grid;gap:16px;grid-template-columns:repeat(3,1fr)}
+@media(max-width:680px){.info{grid-template-columns:1fr}}
+.info .item{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
+.info .k{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.info .v{font-size:16px;font-weight:600}
+
+.singlo{background:linear-gradient(160deg,#1a1330,#120e22);border:1px solid #2c2550;
+border-radius:20px;padding:34px;display:flex;gap:26px;align-items:center;flex-wrap:wrap}
+.singlo .emoji{font-size:46px;flex:none}
+.singlo h3{font-size:24px;margin-bottom:8px;
+background:linear-gradient(90deg,#a78bfa,#f472b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.singlo p{color:var(--muted);max-width:52ch}
+.singlo .go{margin-top:14px;display:inline-block;color:#c4b5fd;font-weight:600}
+.singlo .go:hover{color:#e9ddff}
+
+form{max-width:560px;display:grid;gap:14px}
+.row{display:grid;gap:14px;grid-template-columns:1fr 1fr}
+@media(max-width:560px){.row{grid-template-columns:1fr}}
+input,textarea{width:100%;background:var(--bg2);border:1px solid var(--line);border-radius:10px;
+padding:13px 14px;color:var(--txt);font-size:15px;font-family:inherit}
+input:focus,textarea:focus{outline:none;border-color:var(--accent)}
+label{font-size:13px;color:var(--muted);margin-bottom:-6px}
+textarea{min-height:120px;resize:vertical}
+.formnote{font-size:13px;color:var(--muted);margin-top:4px}
+
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:14px}
+.fin{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+.fin a:hover{color:var(--txt)}
+</style>
 </head>
 <body>
-  <header>
-    <h1>GO Grit s.r.o.</h1>
-    <p>Prevádzkovateľ digitálnych projektov Singlo a GGGame.</p>
-  </header>
 
-  <main>
-    <section>
-      <h2>O spoločnosti</h2>
-      <p>
-        GO Grit s.r.o. sa venuje tvorbe a prevádzke digitálnych projektov,
-        automatizovaných služieb a internetových platforiem.
-      </p>
-    </section>
+<nav>
+<div class="wrap navin">
+<div class="logo"><span class="dot"></span>Go Grit</div>
+<a href="#kontakt" class="btn">Kontakt</a>
+</div>
+</nav>
 
-    <section>
-      <h2>Projekty</h2>
-      <p><strong>Singlo</strong> — projekt zameraný na tvorbu AI hudby, textov a videoklipov.</p>
-      <p><strong>GGGame</strong> — pripravovaný portál s hrami hrateľnými priamo v prehliadači.</p>
-    </section>
+<header>
+<div class="wrap">
+<h1>Go Grit<span class="accent">.</span></h1>
+<p class="lead">Technologická firma so sídlom v Košiciach. Tvorca projektu <span class="accent">Singlo.gifts</span>.</p>
+</div>
+</header>
 
-    <section>
-      <h2>Kontakt</h2>
-      <p>Email: <a href="mailto:info@gogrit.sk">info@gogrit.sk</a></p>
-    </section>
+<section id="firma">
+<div class="wrap">
+<span class="eyebrow">O spoločnosti</span>
+<h2 class="stitle">Údaje o firme</h2>
+<div class="info">
+<div class="item">
+<div class="k">Obchodné meno</div>
+<div class="v">Go Grit, s. r. o.</div>
+</div>
+<div class="item">
+<div class="k">Sídlo</div>
+<div class="v">Popradská 78<br>040 11 Košice – mestská časť Západ</div>
+</div>
+<div class="item">
+<div class="k">IČO / DIČ</div>
+<div class="v">IČO 54508339<br>DIČ 2121709612</div>
+</div>
+</div>
+</div>
+</section>
 
-    <section>
-      <h2>Fakturačné údaje</h2>
-      <p>
-        GO Grit s.r.o.<br>
-        Sídlo: doplniť<br>
-        IČO: doplniť<br>
-        DIČ: doplniť
-      </p>
-    </section>
-  </main>
+<section id="singlo">
+<div class="wrap">
+<span class="eyebrow">Náš projekt</span>
+<h2 class="stitle">Singlo.gifts</h2>
+<div class="singlo">
+<div class="emoji">🎵</div>
+<div>
+<h3>Pieseň na mieru. Darček, ktorý dojme.</h3>
+<p>Singlo.gifts vytvorí personalizovanú pieseň na mieru aj s videoklipom — originálny darček hotový v minútach.</p>
+<a class="go" href="https://singlo.gifts" target="_blank" rel="noopener">Navštíviť singlo.gifts ↗</a>
+</div>
+</div>
+</div>
+</section>
 
-  <footer>
-    © 2026 GO Grit s.r.o. Všetky práva vyhradené.
-  </footer>
+<section id="kontakt">
+<div class="wrap">
+<span class="eyebrow">Kontakt</span>
+<h2 class="stitle">Napíšte nám</h2>
+<p class="sub">Ozveme sa spravidla do 24 hodín. Alebo priamo e-mailom: <a class="accent" href="mailto:info@gogrit.sk">info@gogrit.sk</a></p>
+<form onsubmit="event.preventDefault();this.querySelector('.formnote').textContent='Ďakujeme! Toto je ukážkový formulár — odoslanie pripojíme neskôr.';">
+<div class="row">
+<div><label>Meno</label><input type="text" placeholder="Vaše meno" required></div>
+<div><label>E-mail</label><input type="email" placeholder="vy@email.sk" required></div>
+</div>
+<div><label>Správa</label><textarea placeholder="Vaša správa…" required></textarea></div>
+<div><button type="submit" class="btn" style="width:100%">Odoslať</button></div>
+<p class="formnote">Odoslaním súhlasíte so spracovaním údajov za účelom odpovede na dopyt.</p>
+</form>
+</div>
+</section>
+
+<footer>
+<div class="wrap fin">
+<div class="logo"><span class="dot"></span>Go Grit</div>
+html
+
+<div>Go Grit, s. r. o. · Popradská 78, 040 11 Košice – m. č. Západ · IČO 54508339 · DIČ 2121709612</div>
+<div>© 2026 · <a href="mailto:info@gogrit.sk">info@gogrit.sk</a> · <a href="https://singlo.gifts" target="_blank" rel="noopener">Singlo.gifts ↗</a></div>
+</div>
+</footer>
+
 </body>
 </html>
+
